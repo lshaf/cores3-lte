@@ -222,6 +222,11 @@ void handleUssdTouch(int tx, int ty) {
         return;
     }
 
+    // Header back button
+    if (ty >= STATUS_H+2 && ty <= STATUS_H+20 && tx <= 58) {
+        beep(600,80); currentScreen=SCREEN_MENU; screenDirty=true; return;
+    }
+
     // Dial mode — keypad rows 0-3
     if (ty >= PAD_Y && ty < PAD_Y + (KEY_ROWS-1)*KEY_H) {
         int row=(ty-PAD_Y)/KEY_H, col=tx/KEY_W;
